@@ -1,0 +1,6 @@
+{
+  "name": "ÁGORA - Centros de Excelencia y Portal PosUCI",
+  "description": "Plataforma clínica para Centros de Excelencia (PICS, Sepsis, ACV, Infarto, ICU Liberation) y Portal del Paciente y Cuidador PosUCI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
