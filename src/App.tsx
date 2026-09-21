@@ -13,6 +13,7 @@ import { FhirTraceabilityView } from './components/interop/FhirTraceabilityView'
 import { MobileAppView } from './components/posuci/MobileAppView';
 import { PWAInstallBanner } from './components/pwa/PWAInstallBanner';
 import { OfflineIndicator } from './components/pwa/OfflineIndicator';
+import { FloatingMobileButton } from './components/pwa/FloatingMobileButton';
 
 const MainContent: React.FC = () => {
   const { mode } = useApp();
@@ -44,6 +45,7 @@ export function App() {
         </div>
 
         <OfflineIndicator />
+        <FloatingMobileButton />
 
         <footer className="border-t border-slate-200 bg-white py-6 mt-12 text-center text-xs text-slate-500">
           <div className="max-w-7xl mx-auto px-4 space-y-1">

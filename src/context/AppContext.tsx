@@ -136,13 +136,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
     }
 
-    // 2. Saved preference in localStorage
-    const saved = localStorage.getItem('agora_mode') as AppMode;
-    if (saved) {
-      return saved;
-    }
-
-    // 3. Auto-detect mobile devices or PWA standalone mode
+    // 2. Auto-detect mobile devices, small screens or PWA standalone mode
     if (typeof window !== 'undefined') {
       const isStandalone =
         window.matchMedia('(display-mode: standalone)').matches ||
@@ -151,8 +145,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const isMobileUA = /android|iphone|ipad|ipod|mobile/i.test(window.navigator.userAgent);
 
       if (isStandalone || isSmallScreen || isMobileUA) {
-        return 'movil';
+        // On mobile, always prioritize mobile app unless user explicitly chose a clinical center
+        const savedMobile = localStorage.getItem('agora_mobile_view') as AppMode;
+        return savedMobile || 'movil';
       }
+    }
+
+    // 3. Saved preference in localStorage for desktop
+    const saved = localStorage.getItem('agora_mode') as AppMode;
+    if (saved) {
+      return saved;
     }
 
     return 'hub';
