@@ -1,9 +1,9 @@
 {
-  "id": "/",
+  "id": "/?mode=movil",
   "name": "POSUCI 360 Conecta - ÁGORA UCI",
   "short_name": "POSUCI 360",
   "description": "Plataforma de Humanización UCI, Bundle ABCDEF y Recuperación PICS • Clínica de Occidente",
-  "start_url": "/",
+  "start_url": "/?mode=movil",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",

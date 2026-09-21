@@ -12,7 +12,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'pwa-192x192.png', 'pwa-512x512.png', 'icons/posuci-icon.svg'],
       manifest: {
-        id: '/',
+        id: '/?mode=movil',
         name: 'POSUCI 360 Conecta - ÁGORA UCI',
         short_name: 'POSUCI 360',
         description: 'Plataforma de Humanización UCI, Bundle ABCDEF y Recuperación PICS • Clínica de Occidente',
@@ -20,7 +20,7 @@ export default defineConfig({
         background_color: '#0f172a',
         display: 'standalone',
         orientation: 'portrait-primary',
-        start_url: '/',
+        start_url: '/?mode=movil',
         scope: '/',
         icons: [
           {

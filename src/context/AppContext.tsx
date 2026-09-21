@@ -115,7 +115,47 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [mode, setMode] = useState<AppMode>(() => {
-    return (localStorage.getItem('agora_mode') as AppMode) || 'hub';
+    // 1. Prioritize URL query param: ?mode=movil, ?tab=movil, etc.
+    if (typeof window !== 'undefined' && window.location.search) {
+      const params = new URLSearchParams(window.location.search);
+      const urlMode = params.get('mode') || params.get('tab') || params.get('view');
+      const validModes: AppMode[] = [
+        'movil',
+        'hub',
+        'pics',
+        'sepsis',
+        'acv',
+        'infarto',
+        'icu-liberation',
+        'portal',
+        'dra-morales',
+        'fhir-traceability'
+      ];
+      if (urlMode && validModes.includes(urlMode as AppMode)) {
+        return urlMode as AppMode;
+      }
+    }
+
+    // 2. Saved preference in localStorage
+    const saved = localStorage.getItem('agora_mode') as AppMode;
+    if (saved) {
+      return saved;
+    }
+
+    // 3. Auto-detect mobile devices or PWA standalone mode
+    if (typeof window !== 'undefined') {
+      const isStandalone =
+        window.matchMedia('(display-mode: standalone)').matches ||
+        (window.navigator as unknown as { standalone?: boolean }).standalone === true;
+      const isSmallScreen = window.innerWidth < 768;
+      const isMobileUA = /android|iphone|ipad|ipod|mobile/i.test(window.navigator.userAgent);
+
+      if (isStandalone || isSmallScreen || isMobileUA) {
+        return 'movil';
+      }
+    }
+
+    return 'hub';
   });
 
   const [easyMode, setEasyMode] = useState<boolean>(() => {
