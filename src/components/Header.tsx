@@ -20,6 +20,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import { PWAInstallButton } from './pwa/PWAInstallButton';
 
 export const Header: React.FC = () => {
   const {
@@ -87,6 +88,9 @@ export const Header: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* PWA Direct Mobile Install Button */}
+          <PWAInstallButton variant="header" />
+
           {/* Direct App Móvil Quick Access Button */}
           <button
             onClick={() => setMode('movil')}

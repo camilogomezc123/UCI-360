@@ -11,6 +11,8 @@ import { PortalView } from './components/portal/PortalView';
 import { DraMoralesPanel } from './components/clinical/DraMoralesPanel';
 import { FhirTraceabilityView } from './components/interop/FhirTraceabilityView';
 import { MobileAppView } from './components/posuci/MobileAppView';
+import { PWAInstallBanner } from './components/pwa/PWAInstallBanner';
+import { OfflineIndicator } from './components/pwa/OfflineIndicator';
 
 const MainContent: React.FC = () => {
   const { mode } = useApp();
@@ -36,9 +38,12 @@ export function App() {
     <AppProvider>
       <div className="min-h-screen bg-[#f8fafc] text-slate-900 flex flex-col justify-between selection:bg-sky-500 selection:text-white">
         <div>
+          <PWAInstallBanner />
           <Header />
           <MainContent />
         </div>
+
+        <OfflineIndicator />
 
         <footer className="border-t border-slate-200 bg-white py-6 mt-12 text-center text-xs text-slate-500">
           <div className="max-w-7xl mx-auto px-4 space-y-1">

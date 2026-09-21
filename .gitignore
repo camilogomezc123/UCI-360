@@ -29,6 +29,7 @@
 /*.xls
 /database/*.sqlite
 /dist
+/dev-dist
 /database/backups/
 /database/seeders/*Demo*.php
 /storage/app/*.sql

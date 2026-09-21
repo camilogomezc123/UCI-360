@@ -1,13 +1,39 @@
 {
-    "name": "POSUCI 360 Conecta",
-    "short_name": "POSUCI 360",
-    "description": "Tu recuperación después de la UCI, día a día.",
-    "start_url": "/portal",
-    "scope": "/portal",
-    "display": "standalone",
-    "background_color": "#f5f7f8",
-    "theme_color": "#7c3aed",
-    "icons": [
-        { "src": "/icons/posuci-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
-    ]
+  "id": "/",
+  "name": "POSUCI 360 Conecta - ÁGORA UCI",
+  "short_name": "POSUCI 360",
+  "description": "Plataforma de Humanización UCI, Bundle ABCDEF y Recuperación PICS • Clínica de Occidente",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0284c7",
+  "categories": ["medical", "health"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/posuci-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
 }

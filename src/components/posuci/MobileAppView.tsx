@@ -32,6 +32,7 @@ import { AgendamientoPostUci30Dias } from './AgendamientoPostUci30Dias';
 import { PortalGoals } from '../portal/PortalGoals';
 import { PortalMedications } from '../portal/PortalMedications';
 import { PortalDiary } from '../portal/PortalDiary';
+import { PWAInstallButton } from '../pwa/PWAInstallButton';
 
 export const MobileAppView: React.FC = () => {
   const {
@@ -132,6 +133,9 @@ export const MobileAppView: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* PWA Install Button */}
+          <PWAInstallButton variant="header" />
+
           {/* Frame mode toggle */}
           <button
             onClick={() => setFrameMode(prev => prev === 'native' ? 'frame' : 'native')}
