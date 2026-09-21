@@ -30,20 +30,25 @@ import { AgendamientoPostUci30Dias } from '../posuci/AgendamientoPostUci30Dias';
 export const PortalView: React.FC = () => {
   const { currentCase, gamification, currentUser, easyMode, setMode } = useApp();
   const [activeTab, setActiveTab] = useState<
-    'conecta' | 'stitch-agenda' | 'overview' | 'goals' | 'diary' | 'meds' | 'vitals' | 'discharge' | 'passport' | 'support'
-  >('conecta');
+    'overview' | 'meds' | 'goals' | 'stitch-agenda' | 'diary' | 'vitals' | 'discharge' | 'passport' | 'support' | 'conecta'
+  >('overview');
 
-  const tabs: { key: typeof activeTab; label: string; icon: React.ReactNode }[] = [
-    { key: 'conecta', label: 'PosUCI 360 Conecta', icon: <ShieldCheck className="w-4 h-4 text-emerald-500" /> },
-    { key: 'stitch-agenda', label: '🗓️ Cita Día 30 (Stitch)', icon: <Calendar className="w-4 h-4 text-amber-500" /> },
-    { key: 'overview', label: 'Mi Recuperación', icon: <Sparkles className="w-4 h-4" /> },
-    { key: 'goals', label: 'Metas', icon: <Target className="w-4 h-4" /> },
-    { key: 'diary', label: 'Diario', icon: <BookOpen className="w-4 h-4" /> },
-    { key: 'meds', label: 'Medicamentos', icon: <Pill className="w-4 h-4" /> },
-    { key: 'vitals', label: 'Signos Vitales', icon: <Activity className="w-4 h-4" /> },
-    { key: 'discharge', label: 'Preparación de Alta', icon: <CheckSquare className="w-4 h-4" /> },
-    { key: 'passport', label: 'Pasaporte & Citas', icon: <Award className="w-4 h-4" /> },
-    { key: 'support', label: 'Apoyo y Guías', icon: <HelpCircle className="w-4 h-4" /> }
+  const [showAdvancedTabs, setShowAdvancedTabs] = useState(false);
+
+  const primaryTabs: { key: typeof activeTab; label: string; icon: React.ReactNode }[] = [
+    { key: 'overview', label: '🌟 Mi Día a Día', icon: <Sparkles className="w-4 h-4 text-amber-500" /> },
+    { key: 'meds', label: '💊 Medicamentos', icon: <Pill className="w-4 h-4 text-indigo-500" /> },
+    { key: 'goals', label: '🎯 Metas y Ejercicios', icon: <Target className="w-4 h-4 text-emerald-500" /> },
+    { key: 'stitch-agenda', label: '🗓️ Mi Cita Día 30', icon: <Calendar className="w-4 h-4 text-sky-500" /> },
+    { key: 'diary', label: '📖 Diario Familiar', icon: <BookOpen className="w-4 h-4 text-purple-500" /> }
+  ];
+
+  const advancedTabs: { key: typeof activeTab; label: string; icon: React.ReactNode }[] = [
+    { key: 'vitals', label: 'Signos Vitales', icon: <Activity className="w-4 h-4 text-rose-500" /> },
+    { key: 'discharge', label: 'Preparación de Alta', icon: <CheckSquare className="w-4 h-4 text-slate-500" /> },
+    { key: 'passport', label: 'Pasaporte Clínico', icon: <Award className="w-4 h-4 text-amber-500" /> },
+    { key: 'support', label: 'Guías de Apoyo', icon: <HelpCircle className="w-4 h-4 text-teal-500" /> },
+    { key: 'conecta', label: 'Panel Clínico Avanzado', icon: <ShieldCheck className="w-4 h-4 text-slate-400" /> }
   ];
 
   const firstName = currentUser.role === 'patient'
@@ -182,22 +187,52 @@ export const PortalView: React.FC = () => {
       </div>
 
       {/* Tabs Navigation */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-slate-200 scrollbar-none">
-        {tabs.map(tab => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
-              activeTab === tab.key
-                ? 'bg-[#1b3a5b] text-white shadow-sm'
-                : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
-            }`}
-          >
-            {tab.icon}
-            <span>{tab.label}</span>
-          </button>
-        ))}
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+          {primaryTabs.map(tab => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold whitespace-nowrap transition cursor-pointer ${
+                activeTab === tab.key
+                  ? 'bg-teal-700 text-white shadow-md'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-teal-50/50 hover:border-teal-200'
+              }`}
+            >
+              {tab.icon}
+              <span>{tab.label}</span>
+            </button>
+          ))}
+        </div>
+
+        <button
+          onClick={() => setShowAdvancedTabs(prev => !prev)}
+          className="text-xs font-semibold px-3 py-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition shrink-0"
+        >
+          {showAdvancedTabs ? '▲ Menos Opciones' : '▼ Más Opciones Clínicas'}
+        </button>
       </div>
+
+      {/* Secondary/Advanced Tabs for Detailed Medical History */}
+      {showAdvancedTabs && (
+        <div className="flex items-center gap-1.5 overflow-x-auto p-2 bg-slate-100/70 rounded-2xl border border-slate-200 animate-in fade-in duration-150">
+          <span className="text-[11px] font-bold text-slate-500 uppercase px-2">Detalles:</span>
+          {advancedTabs.map(tab => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition ${
+                activeTab === tab.key
+                  ? 'bg-slate-800 text-white shadow-xs'
+                  : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+              }`}
+            >
+              {tab.icon}
+              <span>{tab.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Active Tab View */}
       {activeTab === 'overview' && (
