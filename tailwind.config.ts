@@ -1,0 +1,88 @@
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#3785ca',
+          light: '#5fa0d8',
+          dark: '#256299',
+          container: '#e0effe',
+          'on-container': '#0f3d64',
+          50: '#f0f7fe',
+          100: '#e0effd',
+          200: '#b9dffa',
+          300: '#7cc2f6',
+          400: '#3785ca',
+          500: '#2972b2',
+          600: '#1e5990',
+          700: '#1a4874',
+          800: '#193e62',
+          900: '#193552',
+        },
+        secondary: {
+          DEFAULT: '#d94943',
+          light: '#e46e69',
+          dark: '#b8342f',
+          container: '#fce8e6',
+          'on-container': '#6e1c18',
+          50: '#fdf3f2',
+          100: '#fbe4e2',
+          200: '#f8cdc9',
+          300: '#f1aaa3',
+          400: '#e87c73',
+          500: '#d94943',
+          600: '#c5352f',
+          700: '#a52a25',
+          800: '#882622',
+          900: '#712522',
+        },
+        tertiary: {
+          DEFAULT: '#4f8737',
+          light: '#6fa657',
+          dark: '#3b6728',
+          container: '#e6f3e0',
+          'on-container': '#1b3e10',
+          50: '#f3f8f1',
+          100: '#e3f0de',
+          200: '#c9e2be',
+          300: '#a3ce94',
+          400: '#79b366',
+          500: '#4f8737',
+          600: '#40792b',
+          700: '#335f23',
+          800: '#2c4c20',
+          900: '#25401c',
+        },
+        background: {
+          DEFAULT: '#fdf3f0',
+          warm: '#fdf3f0',
+          paper: '#ffffff',
+          subtle: '#f9e8e3',
+        },
+        stitch: {
+          primary: '#3785ca',
+          secondary: '#d94943',
+          tertiary: '#4f8737',
+          background: '#fdf3f0',
+          blue: '#3785ca',
+          red: '#d94943',
+          green: '#4f8737',
+          cream: '#fdf3f0',
+        },
+      },
+      fontFamily: {
+        display: ['Plus Jakarta Sans', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
